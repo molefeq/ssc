@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="rest-ws-solution"/>
+<aop-project name="ms-web-client"/>
+<aop-project name="xml-dependency-injection-best-practices-solution"/>
+<aop-project name="ms-web-client-solution">
+<aspect-definition advice-class-name="org.springframework.cloud.netflix.metrics.RestTemplateUrlTemplateCapturingAspect" advice-method-name="captureUrlTemplate(org.aspectj.lang.ProceedingJoinPoint)" advice-type="AROUND" aspect-end-line-number="-1" aspect-name="restTemplateUrlTemplateCapturingAspect" aspect-start-line-number="-1" factory-id="org.springframework.ide.eclipse.aop.core.annotationAspectDefinitionElementFactory" file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" pointcut-expression="execution(* org.springframework.web.client.RestOperations+.*(String, ..))" proxy-target-class="true">
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:ms-web-client-solution|3:java:accounts.AccountsWebApplication|8:restTemplate:43" bean-file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" bean-start-line="43" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" source="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/cloud\/spring-cloud-netflix-core\/1.1.5.RELEASE\/spring-cloud-netflix-core-1.1.5.RELEASE.jar&lt;org.springframework.cloud.netflix.metrics(RestTemplateUrlTemplateCapturingAspect.class[RestTemplateUrlTemplateCapturingAspect~captureUrlTemplate~Lorg.aspectj.lang.ProceedingJoinPoint;" source-start-line="-1" target="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/spring-web\/4.3.2.RELEASE\/spring-web-4.3.2.RELEASE.jar&lt;org.springframework.web.client(RestTemplate.class[RestTemplate~postForLocation~Ljava.lang.String;~Ljava.lang.Object;~\[Ljava.lang.Object;" target-start-line="-1"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:ms-web-client-solution|3:java:accounts.AccountsWebApplication|8:restTemplate:43" bean-file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" bean-start-line="43" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" source="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/cloud\/spring-cloud-netflix-core\/1.1.5.RELEASE\/spring-cloud-netflix-core-1.1.5.RELEASE.jar&lt;org.springframework.cloud.netflix.metrics(RestTemplateUrlTemplateCapturingAspect.class[RestTemplateUrlTemplateCapturingAspect~captureUrlTemplate~Lorg.aspectj.lang.ProceedingJoinPoint;" source-start-line="-1" target="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/spring-web\/4.3.2.RELEASE\/spring-web-4.3.2.RELEASE.jar&lt;org.springframework.web.client(RestTemplate.class[RestTemplate~put~Ljava.lang.String;~Ljava.lang.Object;~\[Ljava.lang.Object;" target-start-line="-1"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:ms-web-client-solution|3:java:accounts.AccountsWebApplication|8:restTemplate:43" bean-file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" bean-start-line="43" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" source="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/cloud\/spring-cloud-netflix-core\/1.1.5.RELEASE\/spring-cloud-netflix-core-1.1.5.RELEASE.jar&lt;org.springframework.cloud.netflix.metrics(RestTemplateUrlTemplateCapturingAspect.class[RestTemplateUrlTemplateCapturingAspect~captureUrlTemplate~Lorg.aspectj.lang.ProceedingJoinPoint;" source-start-line="-1" target="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/spring-web\/4.3.2.RELEASE\/spring-web-4.3.2.RELEASE.jar&lt;org.springframework.web.client(RestTemplate.class[RestTemplate~headForHeaders~Ljava.lang.String;~\[Ljava.lang.Object;" target-start-line="-1"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:ms-web-client-solution|3:java:accounts.AccountsWebApplication|8:restTemplate:43" bean-file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" bean-start-line="43" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" source="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/cloud\/spring-cloud-netflix-core\/1.1.5.RELEASE\/spring-cloud-netflix-core-1.1.5.RELEASE.jar&lt;org.springframework.cloud.netflix.metrics(RestTemplateUrlTemplateCapturingAspect.class[RestTemplateUrlTemplateCapturingAspect~captureUrlTemplate~Lorg.aspectj.lang.ProceedingJoinPoint;" source-start-line="-1" target="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/spring-web\/4.3.2.RELEASE\/spring-web-4.3.2.RELEASE.jar&lt;org.springframework.web.client(RestTemplate.class[RestTemplate~delete~Ljava.lang.String;~\[Ljava.lang.Object;" target-start-line="-1"/>
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:ms-web-client-solution|3:java:accounts.AccountsWebApplication|8:restTemplate:43" bean-file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" bean-start-line="43" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/ms-web-client-solution/src/main/java/accounts/AccountsWebApplication.java" source="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/cloud\/spring-cloud-netflix-core\/1.1.5.RELEASE\/spring-cloud-netflix-core-1.1.5.RELEASE.jar&lt;org.springframework.cloud.netflix.metrics(RestTemplateUrlTemplateCapturingAspect.class[RestTemplateUrlTemplateCapturingAspect~captureUrlTemplate~Lorg.aspectj.lang.ProceedingJoinPoint;" source-start-line="-1" target="=ms-web-client-solution/C:\/Users\/bbdnet1168\/.m2\/repository\/org\/springframework\/spring-web\/4.3.2.RELEASE\/spring-web-4.3.2.RELEASE.jar&lt;org.springframework.web.client(RestTemplate.class[RestTemplate~optionsForAllow~Ljava.lang.String;~\[Ljava.lang.Object;" target-start-line="-1"/>
+</aspect-definition>
+</aop-project>
+<aop-project name="jms-solution"/>
+<aop-project name="spring-boot-solution"/>
+<aop-project name="spring-boot-start"/>
+<aop-project name="jpa-spring-data-solution"/>
+<aop-project name="aop"/>
+<aop-project name="aop-solution"/>
+<aop-project name="jmx-solution"/>
+<aop-project name="xml-dependency-injection-best-practices"/>
+<aop-project name="javaconfig-dependency-injection-solution"/>
+<aop-project name="annotations-solution"/>
+<aop-project name="mvc"/>
+<aop-project name="ms-accounts-server"/>
+<aop-project name="rewards-db"/>
+<aop-project name="spring-intro"/>
+<aop-project name="jpa-spring-data"/>
+<aop-project name="ms-accounts-server-solution"/>
+<aop-project name="xml-di"/>
+<aop-project name="security"/>
+<aop-project name="jmx"/>
+<aop-project name="spring-intro-solution"/>
+<aop-project name="security-solution"/>
+<aop-project name="xml-di-solution"/>
+<aop-project name="ms-discovery-server"/>
+<aop-project name="ms-discovery-server-solution"/>
+<aop-project name="rest-ws"/>
+</aop-reference-model>

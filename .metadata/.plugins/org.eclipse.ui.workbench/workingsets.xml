@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1503473453943_1" label="parentCoreSpringProject" name="parentCoreSpringProject">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/rest-ws-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/javaconfig-dependency-injection" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/annotations" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mvc-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ms-web-client" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/test-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jms" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/xml-dependency-injection-best-practices-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/tx" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/test" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jdbc-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jdbc" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/tx-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ms-web-client-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jms-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/spring-boot-start" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/spring-boot-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jpa-spring-data-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/aop" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/aop-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/rewards-common" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jmx-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/xml-dependency-injection-best-practices" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/javaconfig-dependency-injection-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/annotations-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mvc" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ms-accounts-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/rewards-db" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/spring-intro" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jpa-spring-data" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/xml-di" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ms-accounts-server-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/security" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/spring-intro-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/jmx" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/xml-di-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/security-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ms-discovery-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ms-discovery-server-solution" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/rest-ws" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1503473407565_0" label="Window Working Set" name="Aggregate for window 1503473407565"/>
+</workingSetManager>

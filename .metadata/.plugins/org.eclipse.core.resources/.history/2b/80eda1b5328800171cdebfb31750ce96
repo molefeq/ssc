@@ -1,0 +1,20 @@
+package rewards;
+
+import org.junit.Before;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+
+public class RewardNetworkTests {
+	private RewardNetwork rewardNetwork;
+	
+	@Before 
+	public void setUp() {
+		// Create the application from the configuration
+		ApplicationContext context = SpringApplication.run( TestInfrastructureConfig.class);
+		
+		// Look up the application service interface
+		rewardNetwork = context.getBean(RewardNetwork.class);
+	}
+	
+	
+}
