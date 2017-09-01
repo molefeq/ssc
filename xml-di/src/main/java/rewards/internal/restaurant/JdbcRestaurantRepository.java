@@ -24,7 +24,7 @@ import common.money.Percentage;
  * on destruction.
  */
 //TODO-11: Remove this @Repository annotation and the @Autowired annotation below.
-@Repository
+
 public class JdbcRestaurantRepository implements RestaurantRepository {
 
 	private DataSource dataSource;
@@ -49,7 +49,6 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	
 	public JdbcRestaurantRepository(){}
 	
-	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -65,7 +64,7 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	 */
 	//	TODO-12: Remove this @PostConstruct annotation.  In a previous step we should
 	//	have already instructed Spring to call this method on startup.
-	@PostConstruct
+
 	void populateRestaurantCache() {
 		restaurantCache = new HashMap<String, Restaurant>();
 		String sql = "select MERCHANT_NUMBER, NAME, BENEFIT_PERCENTAGE from T_RESTAURANT";
@@ -126,7 +125,7 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	/**
 	 * Helper method that clears the cache of restaurants.  This method is called on destruction
 	 */
-	@PreDestroy
+
 	void clearRestaurantCache() {
 		restaurantCache.clear();
 	}
