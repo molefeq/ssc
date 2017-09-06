@@ -3,8 +3,8 @@
 <aop-project name="rest-ws-solution"/>
 <aop-project name="javaconfig-dependency-injection"/>
 <aop-project name="annotations"/>
-<aop-project name="ms-web-client"/>
 <aop-project name="mvc-solution"/>
+<aop-project name="ms-web-client"/>
 <aop-project name="jms"/>
 <aop-project name="test-solution"/>
 <aop-project name="xml-dependency-injection-best-practices-solution"/>
