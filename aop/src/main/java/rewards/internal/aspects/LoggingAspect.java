@@ -4,6 +4,11 @@ import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import rewards.internal.monitor.Monitor;
 import rewards.internal.monitor.MonitorFactory;
@@ -14,12 +19,14 @@ import rewards.internal.monitor.MonitorFactory;
 //	Also mark it as a component.  
 //	Place an @Autowired annotation on the constructor.
 
+@Aspect
+@Component
 public class LoggingAspect {
 
 	private Logger logger = Logger.getLogger(getClass());
 	private MonitorFactory monitorFactory;
 
-	
+	@Autowired
 	public LoggingAspect(MonitorFactory monitorFactory) {
 		super();
 		this.monitorFactory = monitorFactory;
@@ -33,7 +40,7 @@ public class LoggingAspect {
 	//  HINT: The pointcut expression can be very hard to work out. If
 	//  you get stuck refer to the examples in the slides and read the
     //  detailed instructions in the lab-notes.
-
+	@Before("execution(public * rewards.internal.*.*Repository.find*(..))")
 	public void implLogging(JoinPoint joinPoint) {
 		logger.info("'Before' advice implementation - " + joinPoint.getTarget().getClass() + //
 				"; Executing before " + joinPoint.getSignature().getName() + //
@@ -51,7 +58,7 @@ public class LoggingAspect {
 	//  implLogging(), this one is similar.
 	// 
 	//  If you are really stuck, PLEASE ask a colleague or your instructor.
-
+	@Around("execution(public * rewards.internal.*.*Repository.update*(..))")
 	public Object monitor(ProceedingJoinPoint repositoryMethod) throws Throwable {
 		String name = createJoinPointTraceName(repositoryMethod);
 		Monitor monitor = monitorFactory.start(name);
@@ -61,8 +68,8 @@ public class LoggingAspect {
 			//  TODO-08: Add the logic to proceed with the target method invocation.
 			//  Be sure to return the target method's return value to the caller
 			//  and delete the line below.
-
-			return new String("Delete this line after completing TODO-08");
+			
+			return repositoryMethod.proceed();
 
 		} finally {
 			monitor.stop();

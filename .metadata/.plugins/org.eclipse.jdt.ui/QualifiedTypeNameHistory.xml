@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="rewards.internal.restaurant.JdbcRestaurantRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.account.AccountRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.account.JdbcAccountRepository"/>
-<fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="rewards.TestInfrastructureConfig"/>
 <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
 <fullyQualifiedTypeName name="org.springframework.boot.SpringApplication"/>
@@ -27,8 +26,16 @@
 <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
 <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
 <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="org.springframework.test.context.ActiveProfiles"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Profile"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.Aspect"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.EnableAspectJAutoProxy"/>
+<fullyQualifiedTypeName name="config.AspectsConfig"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.Around"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.AfterThrowing"/>
 </qualifiedTypeNameHistroy>
