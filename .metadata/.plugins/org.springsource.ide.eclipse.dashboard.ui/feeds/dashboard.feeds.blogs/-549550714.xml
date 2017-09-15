@@ -5,7 +5,61 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2017-09-14T20:43:03Z</updated>
+  <updated>2017-09-15T06:58:12Z</updated>
+  <entry>
+    <title>Security changes in Spring Boot 2.0 M4</title>
+    <link rel="alternate" href="https://spring.io/blog/2017/09/15/security-changes-in-spring-boot-2-0-m4" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Madhura Bhave</name>
+    </author>
+    <id>tag:spring.io,2017-08-23:3006</id>
+    <updated>2017-09-15T06:58:12Z</updated>
+    <content type="html">&lt;p&gt;Milestone 4 of Spring Boot 2.0 brings important changes to the security auto-configuration provided by Spring Boot.&lt;/p&gt;&lt;h2&gt;&lt;a href="#problem-statement" class="anchor" name="problem-statement"&gt;&lt;/a&gt;Problem Statement&lt;/h2&gt;
+&lt;p&gt;Until Spring Boot 1.x, the default auto-configuration secured all of the application endpoints using basic authentication. If actuator was on the classpath, there was a separate security configuration that applied to the actuator endpoints. The way these two auto-configurations would turn on and off was completely independent. Because of this, users wanting to provide custom security found themselves fighting ordering issues with &lt;code&gt;WebSecurityConfigurerAdapter&lt;/code&gt;s.&lt;/p&gt;
+&lt;p&gt;Additionally, for actuator endpoints, the effects of the &lt;code&gt;management.security.enabled&lt;/code&gt; flag based on whether Spring Security was on the classpath or not was quite confusing. &lt;/p&gt;
+&lt;p&gt;There were a number of properties under &lt;code&gt;security.*&lt;/code&gt; and &lt;code&gt;management.security.*&lt;/code&gt; that were applicable only to the auto-configuration provided by Spring Boot. For example, if &lt;code&gt;security.basic.enabled&lt;/code&gt; was set to &lt;code&gt;false&lt;/code&gt;, setting &lt;code&gt;security.sessions&lt;/code&gt; would have absolutely no effect and this turned out to be quite misleading.&lt;/p&gt;&lt;h2&gt;&lt;a href="#improvements-in-2-0" class="anchor" name="improvements-in-2-0"&gt;&lt;/a&gt;Improvements in 2.0&lt;/h2&gt;
+&lt;p&gt;In Spring Boot 2.0, our main goal was to greatly simplify the default security configuration and and make adding custom security easy.&lt;/p&gt;&lt;h3&gt;&lt;a href="#simplified-default-configuration" class="anchor" name="simplified-default-configuration"&gt;&lt;/a&gt;Simplified default configuration&lt;/h3&gt;
+&lt;p&gt;Providing sensible defaults for security is challenging. We&amp;rsquo;ve decided to opt for the most secure default, which is, secure everything, even public and static resources. By default, if Spring Security is on the classpath, Spring Boot will add &lt;code&gt;@EnableWebSecurity&lt;/code&gt;, and rely on Spring Security&amp;rsquo;s content-negotiation to decide which authentication mechanism to use. A default user with a generated password will be provided.&lt;/p&gt;
+&lt;p&gt;If actuator is on the classpath, the same default security configuration will also apply to actuator endpoints. In order to prevent actuators from exposing sensitive data accidentally, most web endpoints will be disabled by default (&lt;code&gt;status&lt;/code&gt; and &lt;code&gt;info&lt;/code&gt; are enabled by default however). Users need to take an explicit step to enable those web endpoints. This behavior is consistent, regardless of whether Spring Security is present on the classpath or not.&lt;/p&gt;&lt;h3&gt;&lt;a href="#consistent-customization" class="anchor" name="consistent-customization"&gt;&lt;/a&gt;Consistent customization&lt;/h3&gt;
+&lt;p&gt;Once users decide that they want to add custom security, the default security configuration provided by Spring Boot will back off completely. At this point, users need to explicitly define all the bits they want to secure. This means security configuration is now in one place and avoids any kind of ordering issues with existing &lt;code&gt;WebSecurityConfigurerAdapter&lt;/code&gt;s.&lt;br/&gt;We provide dedicated helpers to make your configuration more readable and explicit. For management endpoints and static resources, Spring Boot provides convenience factories that will supply the right &lt;code&gt;RequestMatcher&lt;/code&gt;. For management endpoints, the &lt;code&gt;RequestMatcher&lt;/code&gt; will be created based on the &lt;code&gt;management.context-path&lt;/code&gt;. Using &lt;code&gt;RequestMatcher&lt;/code&gt;s gives users the flexibility to secure the application using existing Spring Security expressions such as &lt;code&gt;permitAll&lt;/code&gt;, &lt;code&gt;hasRole&lt;/code&gt; etc.&lt;/p&gt;
+&lt;p&gt;Here is an example of a custom security:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint java"&gt;http&#xD;
+    .authorizeRequests()&#xD;
+        // 1&#xD;
+        .requestMatchers(EndpointRequest.to(&amp;quot;status&amp;quot;, &amp;quot;info&amp;quot;))&#xD;
+            .permitAll()&#xD;
+        // 2&#xD;
+        .requestMatchers(EndpointRequest.toAnyEndpoint())&#xD;
+            .hasRole(&amp;quot;ACTUATOR&amp;quot;)&#xD;
+        // 3 &#xD;
+        .requestMatchers(StaticResourceRequest.toCommonLocations())&#xD;
+            .permitAll()&#xD;
+        // 4&#xD;
+        .antMatchers(&amp;quot;/**&amp;quot;)&#xD;
+            .hasRole(&amp;quot;USER&amp;quot;)&#xD;
+    .and()&#xD;
+  ... // additional configuration&#xD;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;/status&lt;/code&gt; and &lt;code&gt;/info&lt;/code&gt; endpoints do not require authentication.&lt;/li&gt;
+  &lt;li&gt;All other actuator endpoints are protected by the &lt;code&gt;ACTUATOR&lt;/code&gt; role.&lt;/li&gt;
+  &lt;li&gt;Common static resource locations are open to all.&lt;/li&gt;
+  &lt;li&gt;All other application endpoints are protected by the &lt;code&gt;USER&lt;/code&gt; role.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We have reduced &lt;code&gt;SecurityProperties&lt;/code&gt; to a minimum so that there is no confusion about which properties are used only by the auto-configuration and which ones get used even if the default security is turned off. As mentioned before, Spring Boot provides a default user with a generated password. If you want to configure your own user, you can define a bean of type&lt;br/&gt;&lt;code&gt;UserDetailsService&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint java"&gt;@Bean&#xD;
+public UserDetailsService userDetailsService() throws Exception {&#xD;
+    InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();&#xD;
+    manager.createUser(User.withUsername(&amp;quot;user&amp;quot;).password(&amp;quot;password&amp;quot;)&#xD;
+        .roles(&amp;quot;USER&amp;quot;).build());&#xD;
+    return manager;&#xD;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can also provide your own &lt;code&gt;AuthenticationManager&lt;/code&gt; bean or &lt;code&gt;AuthenticationProvider&lt;/code&gt; bean, which will then be used.&lt;/p&gt;&lt;h3&gt;&lt;a href="#additional-improvements" class="anchor" name="additional-improvements"&gt;&lt;/a&gt;Additional improvements&lt;/h3&gt;&lt;h4&gt;&lt;a href="#status-endpoint" class="anchor" name="status-endpoint"&gt;&lt;/a&gt;Status endpoint&lt;/h4&gt;
+&lt;p&gt;Previously, the health endpoint would decide whether to return just the status or expose full health details based on the presence of a role. Users who always wanted to expose full health details, would need to set the &lt;code&gt;management.security.flag&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt; which was less than ideal as it would expose other actuators. As part of 2.0, we&amp;rsquo;ve added a separate status endpoint which returns just the status. The health endpoint always returns the full health details. Both endpoints are secure by default but it makes adding custom security rules for the two cases much easier.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Cloud Stream Ditmars/1.3 Release Candidate Announcement</title>
     <link rel="alternate" href="https://spring.io/blog/2017/09/14/spring-cloud-stream-ditmars-1-3-release-candidate-announcement" />
@@ -1194,84 +1248,5 @@ dependencies {&#xD;
     ...&#xD;
 }
 &lt;/code&gt;&lt;/pre&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring For Apache Kafka 1.3 Milestone 2 Available</title>
-    <link rel="alternate" href="https://spring.io/blog/2017/08/21/spring-for-apache-kafka-1-3-milestone-2-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Artem Bilan</name>
-    </author>
-    <id>tag:spring.io,2017-08-18:3002</id>
-    <updated>2017-08-21T15:33:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;We are pleased to announce the availability of the &lt;a href="https://github.com/spring-projects/spring-kafka/commits/v1.3.0.M1"&gt;Milestone 2&lt;/a&gt; of the Spring for Apache Kafka &lt;code&gt;1.3&lt;/code&gt; version.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It is available for download from the &lt;a href="https://repo.spring.io/milestone"&gt;Milestone Repository&lt;/a&gt;:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;repositories {
-    maven { url 'http://repo.spring.io/libs-milestone' }
-}
-compile "org.springframework.kafka:spring-kafka:1.3.0.M1"&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;(Milestone 1 had a blocker issue).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Functionally, the 1.3.x line provides a subset of the &lt;a href="https://spring.io/blog/2017/07/24/spring-for-apache-kafka-2-0-milestone-3-available"&gt;2.0 line&lt;/a&gt; (which requires Spring Framework 5.0 and Java 8), but provides support for Java 7 projects and Spring Framework &lt;code&gt;4.3.x&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It is primarily intended to provide early access to 0.11.0.0 Apache Kafka client features, but here is a summary:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Apache Kafka &lt;a href="https://archive.apache.org/dist/kafka/0.11.0.0/RELEASE_NOTES.html"&gt;0.11.0.0&lt;/a&gt; client;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Improved listener container threading model facilitated by &lt;a href="https://cwiki.apache.org/confluence/display/KAFKA/KIP-62%3A+Allow+consumer+to+send+heartbeats+from+a+background+thread"&gt;KIP-62&lt;/a&gt;;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;With the new Apache Kafka foundation we have introduced the &lt;code&gt;KafkaTransactionManager&lt;/code&gt; and local transaction support in the &lt;code&gt;KafkaTemplate&lt;/code&gt; via new &lt;code&gt;executeInTransaction()&lt;/code&gt; operation;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The &lt;code&gt;KafkaListenerContainer&lt;/code&gt; can now be supplied with a &lt;code&gt;TransactionManager&lt;/code&gt; to perform polling and offset commits with transaction boundaries, and to synchronize a Kafka transaction with some external transaction manager.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Support for the new Kafka &lt;code&gt;Headers&lt;/code&gt; feature is also provided.
-Now you can send and receive messages with any arbitrary headers, for example build request-reply scenarios using some &lt;code&gt;correlationKey&lt;/code&gt; header;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The &lt;code&gt;KafkaEmbedded&lt;/code&gt; JUnit class/Spring Bean can now be supplied with any arbitrary &lt;code&gt;brokerProperties&lt;/code&gt;;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The &lt;code&gt;KafkaAdmin&lt;/code&gt; can be used to automatically create topics by scanning the application context for &lt;code&gt;NewTopic&lt;/code&gt; beans.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In addition, Spring Integration extension for Apache Kafka &lt;a href="https://github.com/spring-projects/spring-integration-kafka/commits/2.3.x"&gt;2.3.0.M2&lt;/a&gt; is available to incorporate the Spring for Apache Kafka &lt;code&gt;1.3&lt;/code&gt; foundation.
-In particular the &lt;code&gt;KafkaProducerMessageHandler&lt;/code&gt; can be supplied with the &lt;code&gt;KafkaHeaderMapper&lt;/code&gt;, where the &lt;code&gt;DefaultKafkaHeaderMapper&lt;/code&gt; is used by default if the Jackson JSON processor is present in the classpath. If also includes enhancements to error handling.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;spring-integration-kafke &lt;a href="https://github.com/spring-projects/spring-integration-kafka/commits/2.2.x"&gt;2.2.0.M1&lt;/a&gt; is also available for spring-kafka 1.2.x. It includes the enhanced error handling mentioned above.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See the &lt;a href="http://projects.spring.io/spring-kafka/"&gt;Project Page&lt;/a&gt; for a complete matrix of spring-kafka, spring-integration-kafka and kafka-clients version compatibility.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Thanks to all community members for any feedback and contributions!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;General availability of the &lt;code&gt;1.3.0&lt;/code&gt; release is expected to be in September alongside the &lt;code&gt;2.0.0.RELEASE&lt;/code&gt;.
-Feedback, feature requests and, of course, contributions are welcomed via the usual channels:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-kafka/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-kafka/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-kafka/blob/master/CONTRIBUTING.adoc"&gt;Contributing&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-kafka"&gt;Help&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-kafka"&gt;Chat&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
   </entry>
 </feed>
