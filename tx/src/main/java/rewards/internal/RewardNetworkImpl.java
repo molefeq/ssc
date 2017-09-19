@@ -10,6 +10,9 @@ import rewards.internal.restaurant.Restaurant;
 import rewards.internal.restaurant.RestaurantRepository;
 import rewards.internal.reward.RewardRepository;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import common.money.MonetaryAmount;
 
 /**
@@ -21,6 +24,8 @@ import common.money.MonetaryAmount;
  * 
  * Said in other words, this class implements the "reward account for dining" use case.
  */
+//@Transactional(propagation=Propagation.REQUIRES_NEW)
+@Transactional(propagation=Propagation.REQUIRED)
 public class RewardNetworkImpl implements RewardNetwork {
 
 	private AccountRepository accountRepository;
