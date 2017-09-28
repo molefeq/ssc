@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Learning\Spring\ssc"/>
 			<item value="D:\Learning\Spring Boot\Bezuidenhout\spring-certification"/>
 			<item value="D:\Learning\Spring Boot\ssc"/>
 		</list>

@@ -6,7 +6,6 @@
 <fullyQualifiedTypeName name="javax.sql.DataSource"/>
 <fullyQualifiedTypeName name="rewards.internal.reward.JdbcRewardRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.reward.RewardRepository"/>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
 <fullyQualifiedTypeName name="rewards.internal.restaurant.RestaurantRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.restaurant.JdbcRestaurantRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.account.AccountRepository"/>
@@ -41,4 +40,9 @@
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.ResultSetExtractor"/>
 <fullyQualifiedTypeName name="org.springframework.dao.DataAccessException"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="org.springframework.web.servlet.ViewResolver"/>
+<fullyQualifiedTypeName name="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="org.junit.Ignore"/>
 </qualifiedTypeNameHistroy>

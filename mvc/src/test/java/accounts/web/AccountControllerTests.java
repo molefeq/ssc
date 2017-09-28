@@ -39,7 +39,7 @@ public class AccountControllerTests {
 		// TODO-04: Change this to expect a logical view name
 		// Re-run the test and make sure it passes
 		//
-		assertEquals("/WEB-INF/views/accountList.jsp", viewName);
+		assertEquals("accountList", viewName);
 	}
 
 	// TODO-05: Restart the server. You should still be able to see the
@@ -54,5 +54,22 @@ public class AccountControllerTests {
 
 	// TODO-08: Restart the server. You should now be able to click
 	// any of the account links and reach their details page.
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testHandleDetailsRequest() {
+		ExtendedModelMap model = new ExtendedModelMap();
+		String viewName = controller.accountDetails(0l, model);
+
+		Account account = (Account) model.get("account");
+		assertNotNull(account);
+		assertEquals(Long.valueOf(0), account.getEntityId());
+
+		// TODO-04: Change this to expect a logical view name
+		// Re-run the test and make sure it passes
+		//
+		assertEquals("accountDetails", viewName);
+	}
+
 
 }

@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,7 @@ public class MockMvcTests {
 				.perform(get("/accountDetails") //
 						.param("entityId", "0") //
 						.accept(MediaType.parseMediaType("text/html;charset=UTF-8")))
-				// TODO-11: EXTRA CREDIT Fix this methid
+				// TODO-11: EXTRA CREDIT Fix this method
 				// 1. Modify the line below - the URL is now valid so we no
 				// longer get a 404.
 				// 2. Add 3 more andExpect() methods similar to the
@@ -107,7 +108,10 @@ public class MockMvcTests {
 				// 2b. That the attribute has the correct name
 				// 2c. That we are being forwarded to the right JSP
 				// 3. Rerun the tests until they all pass.
-				.andExpect(status().isNotFound());
+				.andExpect(status().isOk())//
+				.andExpect(model().size(1)) //
+				.andExpect(model().attributeExists("account")) //
+				.andExpect(forwardedUrl("/WEB-INF/views/accountDetails.jsp"));;
 	}
 
 }

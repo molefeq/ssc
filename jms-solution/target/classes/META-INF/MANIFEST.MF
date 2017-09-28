@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: jms-solution
 Implementation-Version: 4.3.b.RELEASE
-Built-By: bbdnet1168
+Built-By: Qinisela.Molefe
 Implementation-Vendor-Id: io.pivotal.education.core-spring
-Build-Jdk: 1.8.0_131
+Build-Jdk: 1.8.0_144
 Implementation-URL: http://projects.spring.io/spring-boot/parentCoreSp
  ringProject/jms-solution/
 Created-By: Maven Integration for Eclipse
