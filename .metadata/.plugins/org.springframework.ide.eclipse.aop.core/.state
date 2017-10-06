@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="rest-ws-solution"/>
-<aop-project name="mvc-solution"/>
 <aop-project name="ms-web-client"/>
+<aop-project name="mvc-solution"/>
 <aop-project name="jms"/>
 <aop-project name="test-solution"/>
 <aop-project name="xml-dependency-injection-best-practices-solution"/>

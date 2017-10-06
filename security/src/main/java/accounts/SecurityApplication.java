@@ -26,13 +26,13 @@ import config.SecurityConfig;
 
 // TODO-02: Let Spring Boot enable Spring Security for you.
 // This is done by removing "exclude=SecurityAutoConfiguration.class" below!
-@EnableAutoConfiguration(exclude=SecurityAutoConfiguration.class)
+@EnableAutoConfiguration
 @Configuration
 @ComponentScan
 //TODO-03: Import the SecurityConfig class
 //Save all work and restart the server.  You should be able to access the homepage,
 //but you should see a 404 when clicking on "View account list".-->
-@Import({MvcConfig.class,RootConfig.class})
+@Import({MvcConfig.class,RootConfig.class, SecurityConfig.class})
 public class SecurityApplication {
 
 	/**
