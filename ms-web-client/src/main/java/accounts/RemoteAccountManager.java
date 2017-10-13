@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.web.client.RestTemplate;
+
 import rewards.internal.account.Account;
 
 import common.money.Percentage;
@@ -18,7 +22,10 @@ public class RemoteAccountManager implements AccountManager {
 	// TODO-13: We will need to make RESTful calls to the Accounts Microservice
 	//          How will we do that? Use @Autowired to get Spring to inject
 	//          what we need.
-
+	@Autowired
+	@LoadBalanced
+	private RestTemplate restTemplate;
+		
 	protected String serviceUrl;
 
 	/**
@@ -41,14 +48,15 @@ public class RemoteAccountManager implements AccountManager {
 	@Override
 	public List<Account> getAllAccounts() {
 		// TODO-14: Make a RESTful call to fetch accounts
-		Account[] accounts = null;
+		Account[] accounts = restTemplate.getForObject(this.serviceUrl + "/accounts", Account[].class);
 		return Arrays.asList(accounts);
 	}
 
 	@Override
 	public Account getAccount(Long id) {
 		// TODO-15: Make a RESTful call to fetch an account by its id
-		return null;
+		Account account = restTemplate.getForObject(this.serviceUrl + "/accounts/{id}", Account.class, id);
+		return account;
 	}
 
 	// Ignore the remaining methods to keep lab shorter.
@@ -56,6 +64,7 @@ public class RemoteAccountManager implements AccountManager {
 	@Override
 	public Account save(Account account) {
 		// DO NOT MODIFY THIS CODE
+		
 		throw new UnsupportedOperationException();
 	}
 

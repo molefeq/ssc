@@ -2,7 +2,12 @@ package accounts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * This will become the Web front-end for the microservices application.
@@ -12,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 
 // TODO-09: Annotate this class as a Discovery Server client
+@EnableDiscoveryClient
 public class AccountsWebApplication {
 
 	// In accounts-microservice.properties, spring.application.name is set to
@@ -21,13 +27,18 @@ public class AccountsWebApplication {
 	// or lower case both work.
 
 	// TODO-10: Set the URL to use - read the comment above for help
-	public static final String ACCOUNTS_SERVICE_URL = "http://TODO";
+	public static final String ACCOUNTS_SERVICE_URL = "http://ACCOUNTS-MICROSERVICE";
 
 	public static void main(String[] args) {
 		SpringApplication.run(AccountsWebApplication.class, args);
 	}
 
 	// TODO-11: We will need a load-balanced RestTemplate bean. Create it here.
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 	
 	@Bean
 	public AccountManager accountManager() {
@@ -35,6 +46,13 @@ public class AccountsWebApplication {
 		//          account information from the Microservice.  We work on this
 		//          class next.  Move on to the next step, nothing to do here.
 		return new RemoteAccountManager(ACCOUNTS_SERVICE_URL);
+	}
+	@Bean
+	public ClientHttpRequestFactory clientHttpRequestFactory() {
+	    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+	    factory.setReadTimeout(50000);
+	    factory.setConnectTimeout(50000);
+	    return factory;
 	}
 	
 	// TODO-16: Once RemoteAccountManager is configured, run this as a Spring

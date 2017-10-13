@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="common.money.MonetaryAmount"/>
-<fullyQualifiedTypeName name="rewards.AccountContribution"/>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
-<fullyQualifiedTypeName name="javax.sql.DataSource"/>
 <fullyQualifiedTypeName name="rewards.internal.reward.JdbcRewardRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.reward.RewardRepository"/>
 <fullyQualifiedTypeName name="rewards.internal.restaurant.RestaurantRepository"/>
@@ -12,7 +8,6 @@
 <fullyQualifiedTypeName name="rewards.internal.account.JdbcAccountRepository"/>
 <fullyQualifiedTypeName name="rewards.TestInfrastructureConfig"/>
 <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
-<fullyQualifiedTypeName name="org.springframework.boot.SpringApplication"/>
 <fullyQualifiedTypeName name="rewards.internal.RewardNetworkImpl"/>
 <fullyQualifiedTypeName name="rewards.RewardNetwork"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Import"/>
@@ -29,7 +24,6 @@
 <fullyQualifiedTypeName name="org.springframework.test.context.ActiveProfiles"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Profile"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Aspect"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.EnableAspectJAutoProxy"/>
@@ -50,4 +44,20 @@
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
 <fullyQualifiedTypeName name="accounts.internal.JpaAccountManager"/>
 <fullyQualifiedTypeName name="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.servlet.support.ServletUriComponentsBuilder"/>
+<fullyQualifiedTypeName name="java.net.URI"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseStatus"/>
+<fullyQualifiedTypeName name="rewards.internal.account.Beneficiary"/>
+<fullyQualifiedTypeName name="org.springframework.dao.DataIntegrityViolationException"/>
+<fullyQualifiedTypeName name="javax.validation.ConstraintViolationException"/>
+<fullyQualifiedTypeName name="org.hibernate.exception.ConstraintViolationException"/>
+<fullyQualifiedTypeName name="org.springframework.boot.SpringApplication"/>
+<fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
+<fullyQualifiedTypeName name="org.springframework.cloud.client.loadbalancer.LoadBalanced"/>
 </qualifiedTypeNameHistroy>

@@ -15,6 +15,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 //
 // Older versions of STS/Eclipse may generate an httpMapperProperties deprecated
 // warning, which can safely be ignored.
+@SpringBootApplication
+@EnableEurekaServer
 public class RegistrationServer {
 
 	/**
@@ -25,6 +27,7 @@ public class RegistrationServer {
 	 */
 	public static void main(String[] args) {
 		// TODO-02: Configure this to run using SpringApplication
+		SpringApplication.run(RegistrationServer.class, args);
 
 		// TODO-03: Run this as a Spring Boot application by doing
 		// right-click -> Run As -> Spring Boot App
@@ -32,7 +35,8 @@ public class RegistrationServer {
 		// a browser
 		//
 		// TODO-04: Why is this server's port 1111? Where was this configured?
-		//
+		// ANSWER: application.properties file
+		
 		// TODO-05: Now go to the ms-account-server project - follow its
 		// TO DO instructions.
 	}
